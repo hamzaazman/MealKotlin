@@ -19,6 +19,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -57,8 +62,9 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.13.1'
 
     //Hilt
-    implementation "com.google.dagger:hilt-android:2.38.1"
-    kapt "com.google.dagger:hilt-compiler:2.38.1"
+    implementation "com.google.dagger:hilt-android:2.43.2"
+    annotationProcessor 'com.google.dagger:hilt-compiler:2.43.2'
+    kapt "com.google.dagger:hilt-compiler:2.43.2"
 
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.1"
