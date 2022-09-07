@@ -34,7 +34,9 @@ class CategoriesFragment : Fragment() {
         setupRecyclerView()
         mainViewModel.getCategories()
         mainViewModel.categoryResult.observe(viewLifecycleOwner) { list ->
+            binding.loadingBar.visibility = View.VISIBLE
             categoryAdapter.differ.submitList(list.categories)
+            binding.loadingBar.visibility = View.GONE
         }
 
     }
@@ -43,6 +45,12 @@ class CategoriesFragment : Fragment() {
         binding.categoryRecyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = categoryAdapter
+            setHasFixedSize(true)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
