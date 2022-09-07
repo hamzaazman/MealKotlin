@@ -9,17 +9,36 @@
         android:id="@+id/categoriesFragment"
         android:name="com.example.mealkotlin.ui.CategoriesFragment"
         android:label="Category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_categoriesFragment_to_mealsFragment"
+            app:destination="@id/mealsFragment"
+            app:popUpToSaveState="true" />
+    </fragment>
     <fragment
         android:id="@+id/mealsFragment"
         android:name="com.example.mealkotlin.ui.MealsFragment"
         android:label="Meals"
-        tools:layout="@layout/fragment_meals" />
+        tools:layout="@layout/fragment_meals">
+        <action
+            android:id="@+id/action_mealsFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_mealsFragment_to_categoriesFragment"
+            app:destination="@id/categoriesFragment" />
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.mealkotlin.ui.DetailFragment"
         android:label="Detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail">
+        <action
+            android:id="@+id/action_detailFragment_to_mealsFragment"
+            app:destination="@id/mealsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.mealkotlin.ui.SearchFragment"
