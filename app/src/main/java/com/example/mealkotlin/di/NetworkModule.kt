@@ -1,6 +1,6 @@
 package com.example.mealkotlin.di
 
-import com.example.mealkotlin.data.network.CategoryApi
+import com.example.mealkotlin.data.network.FoodApi
 import com.example.mealkotlin.util.Constants.Companion.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -16,8 +16,8 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): CategoryApi {
-        return retrofit.create(CategoryApi::class.java)
+    fun provideApiService(retrofit: Retrofit): FoodApi {
+        return retrofit.create(FoodApi::class.java)
     }
 
     @Singleton
