@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId "com.example.mealkotlin"
         minSdk 26
-        targetSdk 32
+        targetSdk 29
         versionCode 1
         versionName "1.0"
 
@@ -26,7 +26,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -59,7 +59,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
 
     //Html parse text
-    implementation 'org.jsoup:jsoup:1.13.1'
+    implementation 'org.jsoup:jsoup:1.15.3'
 
     //Hilt
     implementation "com.google.dagger:hilt-android:2.43.2"
@@ -73,6 +73,8 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     //Coroutine
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
