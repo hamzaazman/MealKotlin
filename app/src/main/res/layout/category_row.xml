@@ -4,20 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="result"
             type="com.example.mealkotlin.models.Category" />
     </data>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         onClickCategoryListener="@{result.categoryName}"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="6dp"
         android:elevation="16dp"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -67,5 +66,5 @@
                 tools:text="Description" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </layout>
