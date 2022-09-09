@@ -1,27 +1,21 @@
 package com.example.mealkotlin.ui
 
 import android.os.Bundle
-import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mealkotlin.R
 import com.example.mealkotlin.adapter.MealsAdapter
-import com.example.mealkotlin.bindingadapter.MealRowBinding
 import com.example.mealkotlin.databinding.FragmentMealsBinding
-import com.example.mealkotlin.models.Category
 import com.example.mealkotlin.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.scopes.ActivityRetainedScoped
-import dagger.hilt.android.scopes.FragmentScoped
 
 @AndroidEntryPoint
-class MealsFragment : Fragment() {
+class MealsFragment : Fragment(), SearchView.OnQueryTextListener {
     private var _binding: FragmentMealsBinding? = null
     private val binding get() = _binding
     private val args: MealsFragmentArgs by navArgs()
@@ -44,16 +38,45 @@ class MealsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mainViewModel.getMealsByCategoryName(categoryName)
         setupRecyclerView()
-
+        setHasOptionsMenu(true)
         mainViewModel.mealsResult.observe(viewLifecycleOwner) { list ->
             mealAdapter.differ.submitList(list.meals)
         }
 
     }
 
+    @Deprecated("Deprecated in Java")
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.search_menu, menu)
+        val search = menu.findItem(R.id.menu_search)
+        val searchView = search.actionView as? SearchView
+        searchView?.setOnQueryTextListener(this)
+    }
+
+    private fun searchFilterByMeals(searchText: String) {
+        mainViewModel.getSearchByMeals(searchText)
+        mainViewModel.searchByMeals.observe(viewLifecycleOwner) {
+            mealAdapter.differ.submitList(it.meals)
+        }
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) {
+            searchFilterByMeals(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if (newText != null) {
+            searchFilterByMeals(newText)
+        }
+        return true
+    }
+
     private fun setupRecyclerView() {
         binding!!.mealRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
+            layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = mealAdapter
             setHasFixedSize(true)
         }
