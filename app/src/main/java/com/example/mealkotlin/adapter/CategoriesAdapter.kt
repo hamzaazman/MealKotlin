@@ -15,6 +15,7 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoriesViewH
 
         fun bind(category: Category) {
             binding.result = category
+            binding.executePendingBindings()
         }
 
     }
