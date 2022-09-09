@@ -38,10 +38,8 @@
         <action
             android:id="@+id/action_detailFragment_to_mealsFragment"
             app:destination="@id/mealsFragment" />
+        <argument
+            android:name="mealId"
+            app:argType="integer" />
     </fragment>
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.mealkotlin.ui.SearchFragment"
-        android:label="Search"
-        tools:layout="@layout/fragment_search" />
 </navigation>
