@@ -13,6 +13,7 @@ class MealsAdapter : RecyclerView.Adapter<MealsAdapter.MealViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(meal: Meal) {
             binding.result = meal
+            binding.executePendingBindings()
         }
 
     }
