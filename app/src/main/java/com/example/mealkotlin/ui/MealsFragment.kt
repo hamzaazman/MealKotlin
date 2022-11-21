@@ -2,12 +2,12 @@ package com.example.mealkotlin.ui
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.Fragment
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.mealkotlin.R
 import com.example.mealkotlin.adapter.MealsAdapter
 import com.example.mealkotlin.databinding.FragmentMealsBinding
@@ -19,7 +19,7 @@ class MealsFragment : Fragment(), SearchView.OnQueryTextListener {
     private var _binding: FragmentMealsBinding? = null
     private val binding get() = _binding
     private val args: MealsFragmentArgs by navArgs()
-    private lateinit var mainViewModel: MainViewModel
+    private val mainViewModel: MainViewModel by viewModels()
     private lateinit var categoryName: String
     private val mealAdapter: MealsAdapter by lazy { MealsAdapter() }
 
@@ -28,7 +28,6 @@ class MealsFragment : Fragment(), SearchView.OnQueryTextListener {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMealsBinding.inflate(layoutInflater, container, false)
-        mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
         categoryName = args.categoryName
 
         return binding!!.root
@@ -76,7 +75,7 @@ class MealsFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun setupRecyclerView() {
         binding!!.mealRecyclerView.apply {
-            layoutManager = GridLayoutManager(requireContext(), 2)
+            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             adapter = mealAdapter
             setHasFixedSize(true)
         }
