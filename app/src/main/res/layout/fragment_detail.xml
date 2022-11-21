@@ -20,9 +20,9 @@
             <ImageView
                 android:id="@+id/detail_imageView"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="300dp"
                 android:contentDescription="Meal Detail Image"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +47,7 @@
                     android:layout_marginBottom="8dp"
                     android:ellipsize="end"
                     android:maxLines="2"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/detail_imageView"
@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                     tools:text="Description" />
 
             </LinearLayout>
