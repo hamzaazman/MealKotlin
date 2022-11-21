@@ -1,9 +1,8 @@
 package com.example.mealkotlin.viewmodel
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mealkotlin.data.Repository
 import com.example.mealkotlin.models.Categories
@@ -16,9 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    application: Application,
     private val repository: Repository
-) : AndroidViewModel(application) {
+) : ViewModel() {
 
     var categoryResult: MutableLiveData<Categories> = MutableLiveData()
     var mealsResult: MutableLiveData<Meals> = MutableLiveData()

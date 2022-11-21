@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterInside
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.mealkotlin.R
 import com.example.mealkotlin.databinding.FragmentDetailBinding
 import com.example.mealkotlin.models.Ingredient
@@ -44,9 +47,10 @@ class DetailFragment : Fragment() {
     private fun bind(ingredient: Ingredient) {
         val detail = ingredient.mealDetails[0]
         binding.detailImageView.apply {
-            Picasso.get()
+            Glide.with(context)
                 .load(detail.mealImageUrl)
                 .placeholder(R.drawable.placeholder_image)
+                .transform(CenterInside(), RoundedCorners(24))
                 .into(this)
         }
         binding.detailTitleTextView.text = detail.mealName
