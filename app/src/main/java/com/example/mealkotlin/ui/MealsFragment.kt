@@ -40,7 +40,7 @@ class MealsFragment : Fragment(), SearchView.OnQueryTextListener {
         setupRecyclerView()
         setHasOptionsMenu(true)
         mainViewModel.mealsResult.observe(viewLifecycleOwner) { list ->
-            mealAdapter.differ.submitList(list.meals)
+            mealAdapter.submitList(list.meals)
         }
 
     }
@@ -56,7 +56,7 @@ class MealsFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun searchFilterByMeals(searchText: String) {
         mainViewModel.getSearchByMeals(searchText)
         mainViewModel.searchByMeals.observe(viewLifecycleOwner) {
-            mealAdapter.differ.submitList(it.meals)
+            mealAdapter.submitList(it.meals)
         }
     }
 
